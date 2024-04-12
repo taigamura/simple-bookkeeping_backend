@@ -11,6 +11,11 @@ const categorySchema = new Schema(
             index: true,
             ref: ParentCategory
         },
+        parent_category_name: {
+            type: mongoose.Schema.Types.ObjectId,
+            index: true,
+            ref: ParentCategory
+        },
         category_name: {
             type: String,
             unique: true
