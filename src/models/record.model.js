@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('./user.model');
 const Schema = mongoose.Schema;
 
 const record_schema = new Schema(
@@ -7,16 +6,17 @@ const record_schema = new Schema(
         user_id: {
             type: mongoose.Schema.Types.ObjectId,
             index: true,
-            ref: User
+            ref: "User"
+        },
+        category_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category"
         },
         date: {
             type: Date,
             index: true,
             default: Date.now
-        },
-        category: [{
-            type: String
-        }]
+        }
     }
 );
 

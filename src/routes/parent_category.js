@@ -11,11 +11,8 @@ router.route('/').get((req, res) => {
 // POST /parent_category/add
 router.route('/add').post((req, res) => {
     console.log(req.body)
-    console.log(req.body.parent_category_name)
     
-    if (req.body.parent_category_name == undefined) {res.status(400).json('Error: parent_category_name must be specified')};
     const parent_category_name = req.body.parent_category_name;
-
     const newParentCategory = new ParentCategory({parent_category_name});
 
     newParentCategory.save()

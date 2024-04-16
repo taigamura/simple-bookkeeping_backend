@@ -13,23 +13,17 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     console.log(req.body)
 
-    ParentCategory.find({parent_category_name: req.body.parent_category_name})
+    ParentCategory.find({"parent_category_name": req.body.parent_category_name})
         .then(parent_category => {
-                parent_category.child_category = parent_category.child_category.concat(req.body.category_name);
+                const category_name = req.body.category_name;
+                const parent_category_id = parent_category[0]._id;
+                const newCategory = new Category({category_name, parent_category_id});
+
+                newCategory.save()
+                    .then(() => res.json('Category added!'))
+                    .catch(err => res.status(400).json('Error: ' + err));
             }
         )
-        .catch(err => res.status(400).json('Error: ' + err));
-
-    const category_name = req.body.category_name;
-    
-    if (req.body.category_name == undefined || req.body.parent_category_name == undefined) {
-        res.status(400).json('Error: all fields must be specified')
-    };
-
-    const newCategory = new Category({parent_category_name, category_name});
-
-    newCategory.save()
-        .then(() => res.json('Category added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 

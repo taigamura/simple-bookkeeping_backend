@@ -38,12 +38,14 @@ const userRouter = require('./routes/user');
 const groupRouter = require('./routes/group');
 const categoryRouter = require('./routes/category');
 const parentCategoryRouter = require('./routes/parent_category');
+const recordRouter = require('./routes/record');
 
 app.use('/index', indexRouter);
 app.use('/user', userRouter);
 app.use('/group', groupRouter);
 app.use('/category', categoryRouter);
 app.use('/parent_category', parentCategoryRouter);
+app.use('/record', recordRouter);
 
 app.listen(port, () => {
     console.log(`server running at: ${port}`)

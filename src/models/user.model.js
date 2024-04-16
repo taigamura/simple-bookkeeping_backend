@@ -6,7 +6,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
     {
         username: {
-            type: String
+            type: String,
+            index: true,
+            unique: true
         }
     }
 );

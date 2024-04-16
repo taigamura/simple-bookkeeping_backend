@@ -5,8 +5,10 @@ const Schema = mongoose.Schema;
 
 const parentCategorySchema = new Schema(
     {
-        parent_category_name: String,
-        child_category: [{type: Schema.Types.ObjectId, ref: "Category"}]
+        parent_category_name: {
+            type: String,
+            unique: true
+        }
     }
 );
 
