@@ -17,8 +17,9 @@ router.route('/add').post( async (req, res) => {
     const user_id = await User.findOne({"username": req.body.username}, {_id: 1});
     const date = req.body.date;
     const category_id = await Category.findOne({"category_name": req.body.category_name}, {_id: 1});
+    const amount = req.body.amount;
 
-    const newRecord = new Record({user_id, category_id, date});
+    const newRecord = new Record({user_id, category_id, date, amount});
 
     newRecord.save()
         .then(() => res.json('Record added!'))

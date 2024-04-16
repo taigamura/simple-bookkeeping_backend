@@ -16,6 +16,10 @@ const record_schema = new Schema(
             type: Date,
             index: true,
             default: Date.now
+        },
+        amount: {
+            type: Number,
+            required: true
         }
     }
 );
