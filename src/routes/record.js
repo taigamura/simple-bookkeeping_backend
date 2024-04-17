@@ -10,6 +10,15 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// GET /record/:username
+router.route('/:username').get( async (req, res) => {
+    const user_id = await User.findOne({"username": req.params.username}, {_id: 1});
+
+    Record.find({"user_id": user_id})
+        .then(record => res.json(record))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 // POST /record/add
 router.route('/add').post( async (req, res) => {
     console.log(req.body)
